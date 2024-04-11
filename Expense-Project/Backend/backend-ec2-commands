@@ -1,0 +1,357 @@
+Login as root user:
+[ ec2-user@ip-172-31-91-218 ~ ]$ sudo su -
+
+Check the module list
+[ root@ip-172-31-91-218 ~ ]# dnf module list
+Extra Packages for Enterprise Linux 9 - x86_64                                                                                                                        9.9 MB/s |  21 MB     00:02    
+Extra Packages for Enterprise Linux 9 openh264 (From Cisco) - x86_64                                                                                                  2.0 kB/s | 2.5 kB     00:01    
+Red Hat Enterprise Linux 9 for x86_64 - AppStream from RHUI (RPMs)                                                                                                     24 MB/s |  30 MB     00:01    
+Red Hat Enterprise Linux 9 for x86_64 - BaseOS from RHUI (RPMs)                                                                                                        17 MB/s |  19 MB     00:01    
+Red Hat Enterprise Linux 9 Client Configuration                                                                                                                        17 kB/s | 2.2 kB     00:00    
+Red Hat Enterprise Linux 9 for x86_64 - AppStream from RHUI (RPMs)
+Name                             Stream                       Profiles                                                    Summary                                                                     
+maven                            3.8                          common [d]                                                  Java project management and project comprehension tool                      
+nginx                            1.22                         common [d]                                                  nginx webserver                                                             
+nodejs                           18                           common [d], development, minimal, s2i                       Javascript runtime                                                          
+nodejs                           20                           common [d], development, minimal, s2i                       Javascript runtime                                                          
+php                              8.1                          common [d], devel, minimal                                  PHP scripting language                                                      
+postgresql                       15                           client, server [d]                                          PostgreSQL server and client module                                         
+redis                            7                            common [d]                                                  Redis persistent key-value database                                         
+ruby                             3.1                          common [d]                                                  An interpreter of object-oriented scripting language                        
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+
+Disable the Nodejs18
+[ root@ip-172-31-91-218 ~ ]# dnf module disable nodejs:18 -y
+Last metadata expiration check: 0:00:50 ago on Wed Apr 10 21:52:18 2024.
+Only module name is required. Ignoring unneeded information in argument: 'nodejs:18'
+Dependencies resolved.
+======================================================================================================================================================================================================
+ Package                                         Architecture                                   Version                                         Repository                                       Size
+======================================================================================================================================================================================================
+Disabling modules:
+ nodejs                                                                                                                                                                                              
+
+Transaction Summary
+======================================================================================================================================================================================================
+
+Complete!
+
+Enable the Nodejs20 version
+[ root@ip-172-31-91-218 ~ ]# dnf module enable nodejs:20 -y
+Last metadata expiration check: 0:01:03 ago on Wed Apr 10 21:52:18 2024.
+Dependencies resolved.
+======================================================================================================================================================================================================
+ Package                                         Architecture                                   Version                                         Repository                                       Size
+======================================================================================================================================================================================================
+Enabling module streams:
+ nodejs                                                                                         20                                                                                                   
+
+Transaction Summary
+======================================================================================================================================================================================================
+
+Complete!
+Install NodeJs 20 version
+[ root@ip-172-31-91-218 ~ ]# dnf install nodejs -y
+Last metadata expiration check: 0:01:27 ago on Wed Apr 10 21:52:18 2024.
+Dependencies resolved.
+======================================================================================================================================================================================================
+ Package                                Architecture                 Version                                                                   Repository                                        Size
+======================================================================================================================================================================================================
+Installing:
+ nodejs                                 x86_64                       1:20.11.1-1.module+el9.3.0+21385+bac43d5a                                 rhel-9-appstream-rhui-rpms                        14 M
+Installing weak dependencies:
+ nodejs-docs                            noarch                       1:20.11.1-1.module+el9.3.0+21385+bac43d5a                                 rhel-9-appstream-rhui-rpms                       8.2 M
+ nodejs-full-i18n                       x86_64                       1:20.11.1-1.module+el9.3.0+21385+bac43d5a                                 rhel-9-appstream-rhui-rpms                       8.5 M
+ npm                                    x86_64                       1:10.2.4-1.20.11.1.1.module+el9.3.0+21385+bac43d5a                        rhel-9-appstream-rhui-rpms                       2.5 M
+
+Transaction Summary
+======================================================================================================================================================================================================
+Install  4 Packages
+
+Total download size: 33 M
+Installed size: 175 M
+Downloading Packages:
+(1/4): nodejs-docs-20.11.1-1.module+el9.3.0+21385+bac43d5a.noarch.rpm                                                                                                  16 MB/s | 8.2 MB     00:00    
+(2/4): nodejs-full-i18n-20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64.rpm                                                                                             11 MB/s | 8.5 MB     00:00    
+(3/4): npm-10.2.4-1.20.11.1.1.module+el9.3.0+21385+bac43d5a.x86_64.rpm                                                                                                5.7 MB/s | 2.5 MB     00:00    
+(4/4): nodejs-20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64.rpm                                                                                                       10 MB/s |  14 MB     00:01    
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                  24 MB/s |  33 MB     00:01     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                              1/1 
+  Installing       : nodejs-docs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.noarch                                                                                                                 1/4 
+  Installing       : nodejs-full-i18n-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                            2/4 
+  Installing       : npm-1:10.2.4-1.20.11.1.1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                                3/4 
+  Installing       : nodejs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                                      4/4 
+  Running scriptlet: nodejs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                                      4/4 
+  Verifying        : nodejs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                                      1/4 
+  Verifying        : nodejs-docs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.noarch                                                                                                                 2/4 
+  Verifying        : nodejs-full-i18n-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                            3/4 
+  Verifying        : npm-1:10.2.4-1.20.11.1.1.module+el9.3.0+21385+bac43d5a.x86_64                                                                                                                4/4 
+
+Installed:
+  nodejs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64         nodejs-docs-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.noarch   nodejs-full-i18n-1:20.11.1-1.module+el9.3.0+21385+bac43d5a.x86_64  
+  npm-1:10.2.4-1.20.11.1.1.module+el9.3.0+21385+bac43d5a.x86_64  
+
+Complete!
+
+Add application User
+[ root@ip-172-31-91-218 ~ ]# useradd expense
+
+change directory to app
+[ root@ip-172-31-91-218 ~ ]# cd /app/
+
+List the files in the app folder
+[ root@ip-172-31-91-218 /app ]# ls -lrt
+total 16
+-rw-r--r-- 1 root root 3553 Feb 25 13:19 index.js
+-rw-r--r-- 1 root root  142 Feb 25 13:19 DbConfig.js
+-rw-r--r-- 1 root root  411 Feb 25 13:21 package.json
+-rw-r--r-- 1 root root 1882 Feb 25 13:21 TransactionService.js
+drwxr-xr-x 2 root root   25 Feb 26 01:51 schema
+
+Run npm install command
+[ root@ip-172-31-91-218 /app ]# npm install
+
+added 82 packages, and audited 83 packages in 5s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm notice 
+npm notice New minor version of npm available! 10.2.4 -> 10.5.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.5.2
+npm notice Run npm install -g npm@10.5.2 to update!
+npm notice 
+
+We need to setup a new service in systemd so systemctl can manage this service
+Setup SystemD Expense Backend Service
+[ root@ip-172-31-91-218 /app ]# vim /etc/systemd/system/backend.service
+configuration is in the backend.MD copy and paste it.
+
+After updating the service, reload the service
+[ root@ip-172-31-91-218 /app ]# systemctl daemon-reload
+
+Start the service:
+[ root@ip-172-31-91-218 /app ]# systemctl start backend
+
+Enabled the service:
+[ root@ip-172-31-91-218 /app ]# systemctl enable backend
+Created symlink /etc/systemd/system/multi-user.target.wants/backend.service → /etc/systemd/system/backend.service.
+
+Check the status:
+[ root@ip-172-31-91-218 /app ]# systemctl status backend
+● backend.service - Backend Service
+     Loaded: loaded (/etc/systemd/system/backend.service; enabled; preset: disabled)
+     Active: active (running) since Wed 2024-04-10 22:00:31 UTC; 5min ago
+   Main PID: 2279 (node)
+      Tasks: 7 (limit: 4300)
+     Memory: 20.3M
+        CPU: 399ms
+     CGroup: /system.slice/backend.service
+             └─2279 /bin/node /app/index.js
+
+Apr 10 22:00:31 ip-172-31-91-218.ec2.internal systemd[1]: Started Backend Service.
+Apr 10 22:00:31 ip-172-31-91-218.ec2.internal snoopy[2279]: [uid:1002 sid:2279 tty:(none) cwd:/ filename:/bin/node]: /bin/node /app/index.js
+Apr 10 22:00:31 ip-172-31-91-218.ec2.internal backend[2279]: { "timestamp" : 1712786431, "msg" : "App Started on Port 8080" }
+
+Install MySQL to load the schema here: 
+
+[ root@ip-172-31-91-218 /app ]# dnf install mysql -y
+Last metadata expiration check: 0:06:32 ago on Wed Apr 10 21:52:18 2024.
+Dependencies resolved.
+======================================================================================================================================================================================================
+ Package                                                Architecture                       Version                                       Repository                                              Size
+======================================================================================================================================================================================================
+Installing:
+ mysql                                                  x86_64                             8.0.36-1.el9_3                                rhel-9-appstream-rhui-rpms                             2.7 M
+Installing dependencies:
+ mariadb-connector-c-config                             noarch                             3.2.6-1.el9_0                                 rhel-9-appstream-rhui-rpms                              11 k
+ mysql-common                                           x86_64                             8.0.36-1.el9_3                                rhel-9-appstream-rhui-rpms                              78 k
+
+Transaction Summary
+======================================================================================================================================================================================================
+Install  3 Packages
+
+Total download size: 2.8 M
+Installed size: 60 M
+Downloading Packages:
+(1/3): mariadb-connector-c-config-3.2.6-1.el9_0.noarch.rpm                                                                                                            141 kB/s |  11 kB     00:00    
+(2/3): mysql-common-8.0.36-1.el9_3.x86_64.rpm                                                                                                                         914 kB/s |  78 kB     00:00    
+(3/3): mysql-8.0.36-1.el9_3.x86_64.rpm                                                                                                                                 19 MB/s | 2.7 MB     00:00    
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                  15 MB/s | 2.8 MB     00:00     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                              1/1 
+  Installing       : mariadb-connector-c-config-3.2.6-1.el9_0.noarch                                                                                                                              1/3 
+  Installing       : mysql-common-8.0.36-1.el9_3.x86_64                                                                                                                                           2/3 
+  Installing       : mysql-8.0.36-1.el9_3.x86_64                                                                                                                                                  3/3 
+  Running scriptlet: mysql-8.0.36-1.el9_3.x86_64                                                                                                                                                  3/3 
+  Verifying        : mariadb-connector-c-config-3.2.6-1.el9_0.noarch                                                                                                                              1/3 
+  Verifying        : mysql-8.0.36-1.el9_3.x86_64                                                                                                                                                  2/3 
+  Verifying        : mysql-common-8.0.36-1.el9_3.x86_64                                                                                                                                           3/3 
+
+Installed:
+  mariadb-connector-c-config-3.2.6-1.el9_0.noarch                             mysql-8.0.36-1.el9_3.x86_64                             mysql-common-8.0.36-1.el9_3.x86_64                            
+
+Complete!
+
+Enable MySQL:
+[ root@ip-172-31-91-218 /app ]# systemctl enable mysqld
+Created symlink /etc/systemd/system/multi-user.target.wants/mysqld.service → /usr/lib/systemd/system/mysqld.service.
+
+Start MySQL:
+[ root@ip-172-31-91-218 /app ]# systemctl start mysqld
+
+Check status:
+[ root@ip-172-31-91-218 /app ]# systemctl status mysqld
+
+Just check the schema mentioned; Amount should be in Interger; description what name of thing:
+[ root@ip-172-31-91-218 /app ]# cat schema/backend.sql
+CREATE DATABASE IF NOT EXISTS transactions;
+USE transactions;
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    amount INT,
+    description VARCHAR(255)
+);
+
+CREATE USER IF NOT EXISTS 'expense'@'%' IDENTIFIED BY 'ExpenseApp@1';
+GRANT ALL ON transactions.* TO 'expense'@'%';
+FLUSH PRIVILEGES;
+
+Load the schema:
+[ root@ip-172-31-91-218 /app ]# mysql -h 172.31.81.19(my sql private ip) -u root -p(password you have setup in the database ec2 instance)
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 8.0.36 Source distribution
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| transactions       |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use transactions;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_transactions |
++------------------------+
+| transactions           |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from transactions;
+Empty set (0.00 sec)
+
+mysql> exit
+Bye
+
+Just a small verification are you able to ping dababase private ip from the backend ec2 instance
+[ root@ip-172-31-91-218 /app ]# ping -c 3 172.31.81.19
+PING 172.31.81.19 (172.31.81.19) 56(84) bytes of data.
+64 bytes from 172.31.81.19: icmp_seq=1 ttl=64 time=0.412 ms
+64 bytes from 172.31.81.19: icmp_seq=2 ttl=64 time=0.468 ms
+64 bytes from 172.31.81.19: icmp_seq=3 ttl=64 time=0.502 ms
+
+--- 172.31.81.19 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2055ms
+rtt min/avg/max/mdev = 0.412/0.460/0.502/0.037 ms
+
+Just checking with mysql port number:
+[ root@ip-172-31-91-218 /app ]# telnet 172.31.81.19 3306
+Trying 172.31.81.19...
+Connected to 172.31.81.19.
+Escape character is '^]'.
+
+Just doing a port checks:
+[ root@ip-172-31-91-218 /app ]# netstat -lntp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1246/sshd: /usr/sbi 
+tcp6       0      0 :::8080                 :::*                    LISTEN      2279/node           
+tcp6       0      0 :::33060                :::*                    LISTEN      2789/mysqld         
+tcp6       0      0 :::3306                 :::*                    LISTEN      2789/mysqld         
+tcp6       0      0 :::22                   :::*                    LISTEN      1246/sshd: /usr/sbi 
+
+[ root@ip-172-31-91-218 /app ]# ps -ef | grep node
+root         708       2  0 21:49 ?        00:00:00 [xfs-inodegc/dm-]
+root         812       2  0 21:49 ?        00:00:00 [xfs-inodegc/dm-]
+root         814       2  0 21:49 ?        00:00:00 [xfs-inodegc/dm-]
+root         850       2  0 21:49 ?        00:00:00 [xfs-inodegc/xvd]
+root         868       2  0 21:49 ?        00:00:00 [xfs-inodegc/dm-]
+root         869       2  0 21:49 ?        00:00:00 [xfs-inodegc/dm-]
+root         885       2  0 21:49 ?        00:00:00 [xfs-inodegc/dm-]
+expense     2279       1  0 22:00 ?        00:00:00 /bin/node /app/index.js
+root        2924    1351  0 22:24 pts/0    00:00:00 grep --color=auto node
+
+This is later after seeting the complete application:
+
+[ root@ip-172-31-91-218 /app ]#  mysql -h 172.31.81.19(my sql private ip) -u root -p(password you have setup in the database ec2 instance)
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.36 Source distribution
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| transactions       |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from transactions;
++----+--------+-------------+
+| id | amount | description |
++----+--------+-------------+
+|  1 |    200 | movie       |
+|  2 |   5000 | rent        |
+|  3 |    300 | car         |
++----+--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> exit
+Bye
