@@ -30,3 +30,16 @@ Save and exit:
 Save your changes and exit the editor.
 
 Now, whenever your system restarts, the start_services.sh script will be executed, which will start both the MySQL and backend services.
+
+### Create a UserData script:
+
+In the AWS console, navigate to the EC2 instance you want to configure. Under "Actions", select "Instance Settings" > "Edit User Data".
+
+Add commands to start cron:
+
+In the User Data editor, add the commands to start the cron service. For example:
+
+```
+#!/bin/bash
+sudo systemctl start cron
+```
